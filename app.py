@@ -38,14 +38,31 @@ RAW_NILAI_PRIBADI = [
 
 # Daftar Nilai Organisasi (TETAP SAMA)
 RAW_NILAI_ORGANISASI = [
-    'Akuntabilitas', 'Kepuasan Pelanggan', 'Pengambilan Risiko', 'Birokrasi', 'Hati-hati',
-    'Sangat Terpusat', 'Kerja Sama Tim', 'Kompetitif', 'Konflik', 'Kontrol', 'Dapat Diandalkan',
-    'Pendelegasian', 'Demokratis', 'Disiplin', 'Pemberdayaan', 'Antusias', 'Keadilan',
-    'Berorientasi pada Keluarga', 'Ramah', 'Tidak Formal', 'Integritas', 'Berorientasi pada Hierarki',
-    'Inovatif', 'Berorientasi pada Hasil', 'Berorientasi pada Orang', 'Pasif', 'Berorientasi pada Kinerja',
-    'Perencanaan', 'Komunikasi yang Buruk', 'Berorientasi pada Kualitas', 'Menghargai Keberagaman',
-    'Menghargai Karyawan', 'Kaku', 'Berbagi Informasi', 'Saling Menyalahkan', 'Berbagi Pengetahuan',
-    'Stabilitas', 'Terstruktur', 'Mendukung', 'Transparansi', 'Rasa Mendesak'
+    'Berorientasi kepada kepuasan pelanggan', 'Berani Mengambil Risiko', 'Pasif terhadap Perubahan', 
+    'Dapat Diandalkan', 'Ramah', 'Melayani Sepenuh Hati', 'Saling Menyalahkan', 'Sharing Knowledge', 
+    'Bersikap Positif', 'Berprestasi', 'Menjaga Kualitas', 'memiliki Tanggung jawab Sosial', 
+    'Mengeksploitasi', 'memanipulasi', 'Mengutamakan keamanan', 'terbuka dalam Komunikasi', 
+    'berkontribusi', 'Saling Menotong', 'Koruptif', 'Menaati aturan dan kebijakan', 'Birokratis', 
+    'memberikan Jaminan Kesejahteraan', 'Menyeimbangkan antara Urusan pekerjaan pribadi', 'Produktif', 
+    'Mengapresiasi Karyawan', 'Transparan', 'Memiliki rasa ingin tahu', 'Mendapatkan kejelasan', 
+    'mengembangkan kepemimpinan', 'kreatif dan inovatif', 'kepemimpinan yang kurang efektif', 
+    'Memenuhi kebutuhan kepegawaian', 'memahami tugas&fungsi pekerjaan', 'Pembelajar', 
+    'Menghindati risiko', 'Saling menghargai', 'Memberikan kinerja terbaik', 'memberi dorongan', 
+    'melakukan perbaikan berkelanjutan', 'terbuka memberikan masukan', 'Kesediaan mendengarkan', 
+    'melempar tanggung jawab', 'lembur', 'bertoleran:', 'berintegritas', 
+    'mengkomunikasikan nilai organisasi', 'professional', 'bekerjasama', 'berorientasi pada tujuan', 
+    'konsisten', 'kompetitif', 'menyelesaikan perselisihan', 'Jujur', 
+    'Menjaga rahasiajabatan &negara', 'merangkul Keberagaman', 'Memegang teguh ideologi Pancasila', 
+    'Pemimpin sebagai teladan', 'fokus pada pertumbuhan organisasi', 'memberdayakan SDM (empowering)', 
+    'Mengutamakan keselamatan', 'Solutif', 'Berpikir menyeluruh', 'Cermat', 'Disiptin', 
+    'Mengelola Sumber daya', 'Silo', 'Bertanggung Jawab', 'Mentoring', 'Adil', 'Peduli', 
+    'Konflik Kepentingan', 'efektif dan efisien', 'mengelola sumber daya', 'Berfokus jangka Panjang', 
+    'memahami tugas dan fungsi pekerjaan', 'otoriter', 'beretika', 'terbuka menerima masukan', 
+    'berbagiinformasi', 'berorientasi pada pencapaian realisasi', 'menaati aturan kebijakan', 
+    'melakukan pengembangan profesi', 'melempar tanggungjawab', 'berhati-hati', 
+    'siap menghadapi ketidakpastian', 'Antusias', 'fokus pada pengurangan biaya', 'Mendapatkan kejelasan', 
+    'menjaga rahasia jabatan dan negara', 'menjaga nama baik ASN instansi dan negara', 
+    'tidak menyalahgunakan kewenangan jabatan'
 ]
 
 
