@@ -1,5 +1,4 @@
 import streamlit as st
-st.balloons() # <--- TAMBAHKAN BARIS INI
 import pandas as pd
 import gspread
 from google.oauth2.service_account import Credentials
@@ -36,7 +35,7 @@ NILAI_ORGANISASI_LIST = DEFAULT_OPTION + [
 
 # --- KONEKSI KE GOOGLE SHEETS ---
 try:
-    scopes = ['https://www.googleapis.com/auth/spreadsheets']
+    scopes = ['https://www.googleapis.com/auth/spreadsheets', 'https://www.googleapis.com/auth/drive']
     creds = Credentials.from_service_account_info(
         st.secrets["google_credentials"], scopes=scopes
     )
