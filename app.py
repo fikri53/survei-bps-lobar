@@ -18,8 +18,6 @@ if 'survey_submitted' not in st.session_state:
 
 # --- DAFTAR NILAI ---
 DEFAULT_OPTION = [None]
-
-# --- PERUBAHAN DI SINI: Daftar Nilai Pribadi diperbarui sesuai teks yang Anda berikan ---
 RAW_NILAI_PRIBADI = [
     'Konsisten', 'Mengutamakan kebersamaan', 'Berani Mengambil Risiko', 'Berdedikasi', 'Berprestasi',
     'Mengutamakan Kesehatan', 'Kontribusi', 'Menyeimbangkan antara urusan Pekerjaan dan pribadi',
@@ -34,9 +32,6 @@ RAW_NILAI_PRIBADI = [
     'Humoris/Menyenangkan', 'Pemalas', 'Produktif', 'Bersahabat', 'Unggul', 'Rendah Hati',
     'Tertutup', 'Bertanggung Jawab', 'Interaktif/Komunikatif', 'Toleransi'
 ]
-
-
-# Daftar Nilai Organisasi (TETAP SAMA)
 RAW_NILAI_ORGANISASI = [
     'Berorientasi kepada kepuasan pelanggan', 'Berani Mengambil Risiko', 'Pasif terhadap Perubahan', 
     'Dapat Diandalkan', 'Ramah', 'Melayani Sepenuh Hati', 'Saling Menyalahkan', 'Sharing Knowledge', 
@@ -64,7 +59,6 @@ RAW_NILAI_ORGANISASI = [
     'menjaga rahasia jabatan dan negara', 'menjaga nama baik ASN instansi dan negara', 
     'tidak menyalahgunakan kewenangan jabatan'
 ]
-
 
 # Membuat daftar baru dengan penomoran
 NILAI_PRIBADI_LIST = DEFAULT_OPTION + [f"{i+1}. {nilai}" for i, nilai in enumerate(RAW_NILAI_PRIBADI)]
@@ -121,30 +115,39 @@ if not st.session_state.survey_submitted:
 
     with st.form("main_survey_form"):
         st.header("Informasi Responden")
-        tim_kerja = st.selectbox("1. Tim Kerja", [None, 'Umum', 'Hansos dan Analisis', 'Kesra dan Duknaker', 'Neraca', 'Ekonomi', 'Pertanian', 'Harga', 'IPDS', 'PSS', 'RB dan ZI'])
-        jenis_kelamin = st.radio("2. Jenis Kelamin", ["Laki-laki", "Perempuan"], horizontal=True)
-        jabatan = st.radio("3. Jabatan", ["Ketua Tim", "Anggota Tim"], horizontal=True)
+        # --- PERUBAHAN 1: MENAMBAHKAN INPUT NAMA DAN MEMPERBARUI PENOMORAN ---
+        nama_responden = st.text_input("1. Nama Lengkap Anda")
+        tim_kerja = st.selectbox("2. Tim Kerja", [None, 'Umum', 'Hansos dan Analisis', 'Kesra dan Duknaker', 'Neraca', 'Ekonomi', 'Pertanian', 'Harga', 'IPDS', 'PSS', 'RB dan ZI'])
+        jenis_kelamin = st.radio("3. Jenis Kelamin", ["Laki-laki", "Perempuan"], horizontal=True)
+        jabatan = st.radio("4. Jabatan", ["Ketua Tim", "Anggota Tim"], horizontal=True)
+        
         st.markdown("---")
         st.header("Peringkat Nilai Budaya")
 
-        df_pribadi = create_ranking_editor("4. NILAI PRIBADI", NILAI_PRIBADI_LIST, "editor_pribadi")
-        df_unit_sekarang = create_ranking_editor("5. Kerja Unit Kerja Saat Ini (BPS Lobar)", NILAI_ORGANISASI_LIST, "editor_unit_sekarang")
-        df_unit_harapan = create_ranking_editor("6. Budaya Kerja Unit Kerja yang Diharapkan", NILAI_ORGANISASI_LIST, "editor_unit_harapan")
-        df_instansi_sekarang = create_ranking_editor("7. Budaya Instansi (BPS Secara Keseluruhan) Saat Ini", NILAI_ORGANISASI_LIST, "editor_instansi_sekarang")
-        df_instansi_harapan = create_ranking_editor("8. Budaya Instansi (BPS Secara Keseluruhan) yang Diharapkan", NILAI_ORGANISASI_LIST, "editor_instansi_harapan")
+        # PENOMORAN PERTANYAAN DIPERBARUI
+        df_pribadi = create_ranking_editor("5. NILAI PRIBADI", NILAI_PRIBADI_LIST, "editor_pribadi")
+        df_unit_sekarang = create_ranking_editor("6. Kerja Unit Kerja Saat Ini (BPS Lobar)", NILAI_ORGANISASI_LIST, "editor_unit_sekarang")
+        df_unit_harapan = create_ranking_editor("7. Budaya Kerja Unit Kerja yang Diharapkan", NILAI_ORGANISASI_LIST, "editor_unit_harapan")
+        df_instansi_sekarang = create_ranking_editor("8. Budaya Instansi (BPS Secara Keseluruhan) Saat Ini", NILAI_ORGANISASI_LIST, "editor_instansi_sekarang")
+        df_instansi_harapan = create_ranking_editor("9. Budaya Instansi (BPS Secara Keseluruhan) yang Diharapkan", NILAI_ORGANISASI_LIST, "editor_instansi_harapan")
 
         st.markdown("---")
         submitted = st.form_submit_button("Kirim Jawaban", type="primary")
 
     if submitted:
         all_errors = []
+        # --- PERUBAHAN 2: MENAMBAHKAN VALIDASI NAMA ---
+        if not nama_responden:
+            all_errors.append("Mohon isi Nama Lengkap Anda.")
         if not tim_kerja:
             all_errors.append("Mohon pilih Tim Kerja Anda.")
-        all_errors.extend(validate_editor_data(df_pribadi, "4. Nilai Pribadi"))
-        all_errors.extend(validate_editor_data(df_unit_sekarang, "5. Unit Kerja Saat Ini"))
-        all_errors.extend(validate_editor_data(df_unit_harapan, "6. Budaya Kerja Diharapkan"))
-        all_errors.extend(validate_editor_data(df_instansi_sekarang, "7. Instansi Saat Ini"))
-        all_errors.extend(validate_editor_data(df_instansi_harapan, "8. Instansi Diharapkan"))
+        
+        # PENOMORAN PERTANYAAN DI VALIDASI JUGA DIPERBARUI
+        all_errors.extend(validate_editor_data(df_pribadi, "5. Nilai Pribadi"))
+        all_errors.extend(validate_editor_data(df_unit_sekarang, "6. Unit Kerja Saat Ini"))
+        all_errors.extend(validate_editor_data(df_unit_harapan, "7. Budaya Kerja Diharapkan"))
+        all_errors.extend(validate_editor_data(df_instansi_sekarang, "8. Instansi Saat Ini"))
+        all_errors.extend(validate_editor_data(df_instansi_harapan, "9. Instansi Diharapkan"))
 
         if all_errors:
             for error in all_errors:
@@ -163,11 +166,14 @@ if not st.session_state.survey_submitted:
                     final_df = pd.concat([df_pribadi, df_unit_sekarang, df_unit_harapan, df_instansi_sekarang, df_instansi_harapan], ignore_index=True)
 
                     final_df['Timestamp'] = timestamp
+                    # --- PERUBAHAN 3: MENAMBAHKAN DATA NAMA RESPONDEN ---
+                    final_df['Nama Responden'] = nama_responden
                     final_df['Nama Tim'] = tim_kerja
                     final_df['Jenis Kelamin'] = jenis_kelamin
                     final_df['Jabatan'] = jabatan
                     
-                    final_df = final_df[['Timestamp', 'Nama Tim', 'Jenis Kelamin', 'Jabatan', 'Kategori Survei', 'Pilihan Nilai', 'Ranking']]
+                    # --- PERUBAHAN 4: MENYESUAIKAN URUTAN KOLOM ---
+                    final_df = final_df[['Timestamp', 'Nama Responden', 'Nama Tim', 'Jenis Kelamin', 'Jabatan', 'Kategori Survei', 'Pilihan Nilai', 'Ranking']]
                     final_df.rename(columns={'Pilihan Nilai': 'Nilai Budaya'}, inplace=True)
                     
                     rows_to_append = final_df.values.tolist()
